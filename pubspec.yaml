@@ -37,6 +37,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   json_annotation:
   http: ^1.4.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
