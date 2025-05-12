@@ -9,7 +9,7 @@ class Pooo extends StatelessWidget {
       appBar: AppBar(
         title: Text('data'),
       ),
-      body: Container(),
+      body: Text('tilted'),
     );
   }
 }
