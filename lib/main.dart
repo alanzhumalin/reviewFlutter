@@ -18,6 +18,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: NavBar());
+    return MaterialApp(
+        themeMode: ThemeMode.dark,
+        theme: ThemeData(
+            appBarTheme: AppBarTheme(
+              color: Colors.white,
+            ),
+            scaffoldBackgroundColor: Colors.white,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            colorScheme: ColorScheme.fromSeed(
+                seedColor: const Color.fromARGB(255, 233, 30, 99))),
+        debugShowCheckedModeBanner: false,
+        home: NavBar());
   }
 }

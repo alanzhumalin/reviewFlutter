@@ -22,6 +22,12 @@ class _NavBarState extends State<NavBar> {
         children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.pink,
+          unselectedItemColor: Colors.blueGrey,
+          unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w500),
+          selectedLabelStyle:
+              TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
           onTap: (value) {
             setState(() {
               index = value;
@@ -29,10 +35,12 @@ class _NavBarState extends State<NavBar> {
           },
           currentIndex: index,
           items: [
-            BottomNavigationBarItem(label: "Catalog", icon: Icon(Icons.home)),
+            BottomNavigationBarItem(
+                label: "Catalog", icon: Icon(Icons.podcasts)),
             BottomNavigationBarItem(
                 label: "Profiles", icon: Icon(Icons.account_box)),
-            BottomNavigationBarItem(label: "Govono", icon: Icon(Icons.balance))
+            BottomNavigationBarItem(
+                label: "My account", icon: Icon(Icons.balance))
           ]),
     );
   }

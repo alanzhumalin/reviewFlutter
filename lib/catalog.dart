@@ -11,13 +11,7 @@ class Catalog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        title: const Text(
-          'Posts',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        ),
-      ),
+      backgroundColor: Colors.white,
       body: BlocConsumer<PostBloc, PostState>(
         listener: (context, state) {
           if (state is PostError) {
@@ -86,49 +80,67 @@ class Catalog extends StatelessWidget {
           if (state is PostLoaded) {
             final posts = state.posts;
 
-            return RefreshIndicator(
-              onRefresh: () async {
-                context.read<PostBloc>().add(LoadPost());
-              },
-              child: ListView.separated(
-                padding: const EdgeInsets.all(12),
-                itemCount: posts.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 12),
-                itemBuilder: (context, index) {
-                  final post = posts[index];
-
-                  return Card(
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            post.title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            post.body,
-                            style: const TextStyle(fontSize: 14),
-                          ),
-                        ],
-                      ),
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  surfaceTintColor: Colors.white,
+                  backgroundColor: Colors.white,
+                  pinned: true,
+                  expandedHeight: 70.0,
+                  flexibleSpace: FlexibleSpaceBar(
+                    title: Text(
+                      'Hello, welcome to posts',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
-                  );
-                },
-              ),
+                  ),
+                ),
+                SliverList.builder(
+                    itemCount: posts.length,
+                    itemBuilder: (context, index) {
+                      final post = posts[index];
+
+                      return Card(
+                        color: const Color.fromARGB(255, 246, 246, 246),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                        shadowColor: Colors.transparent,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                post.title,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                post.body,
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    })
+              ],
             );
           }
 
           return const Center(child: Text('No posts exist'));
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {},
+        child: Icon(
+          Icons.create,
+          color: const Color.fromARGB(255, 233, 30, 99),
+        ),
       ),
     );
   }
